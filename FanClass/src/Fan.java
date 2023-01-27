@@ -2,15 +2,15 @@
 public class Fan 
 {
 	
-	public static final int SLOW = 1;
-	public static final int MEDIUM = 2;
-	public static final int FAST = 3;
+	public final int SLOW = 1;
+	public final int MEDIUM = 2;
+	public final int FAST = 3;
 	
 	private int speed;
 	private boolean on;
 	private double radius;
 	public String color;
-	public int id;
+	private static int id = 0;
 	
 	public Fan (int speed, boolean on, double radius, String color ) 
 	{
@@ -19,6 +19,7 @@ public class Fan
 		this.on = on;
 		this.radius = radius;
 		this.color = color;
+		id++;
 	}
 	
 	// default no arg constructor
@@ -74,16 +75,16 @@ public class Fan
 	
 	// end of getters and setters
 	
-	public int idField ( int fanNum )
-	{
-		int idCounter = 0;
-		for ( int i = 0; i < fanNum; i++ )
-			idCounter++; 
-		this.id = idCounter;
-		return id;
-	} // end of idField
+//	public int idField ( int fanNum )
+//	{
+//		int idCounter = 0;
+//		for ( int i = 0; i < fanNum; i++ )
+//			idCounter++; 
+//		this.id = idCounter;
+//		return id;
+//	} // end of idField
 	
-	public int getIdField ( )
+	public int getId ( )
 	{
 		return id;
 	}
@@ -92,7 +93,7 @@ public class Fan
 	@Override
 	public String toString ( ) 
 	{
-		return "Fan: [speed = " + getSpeed ( ) + ", on = " +isOn ( ) + ", radius = " + getRadius ( ) + ", color = " + getColor ( ) + ", id = " + getIdField ( )
+		return "Fan: [speed = " + getSpeed ( ) + ", on = " +isOn ( ) + ", radius = " + getRadius ( ) + ", color = " + getColor ( ) + ", id = " + getId ( )
 				+ "]";
 	} // end of toString method
 	
