@@ -10,7 +10,8 @@ public class Fan
 	private boolean on; // fan status
 	private double radius; // fan radius
 	public String color; // fan color
-	private static int id = 0; // fan id
+	private int id; // fan id
+	private static int nextId = 0; // the id for the next fan
 	
 	public Fan (int speed, boolean on, double radius, String color ) 
 	{
@@ -19,7 +20,7 @@ public class Fan
 		this.on = on;
 		this.radius = radius;
 		this.color = color;
-		id++;
+		id = nextId++;
 	}
 	
 	// default no arg constructor
@@ -29,7 +30,7 @@ public class Fan
 		on = false;
 		radius = 5.0;
 		color = "blue";
-		id = 1;
+		id = nextId++;
 	} // end of default no arg constructor
 
 	// getters and setters
@@ -84,8 +85,16 @@ public class Fan
 	@Override
 	public String toString ( ) 
 	{
-		return "Fan: [ speed = " + getSpeed ( ) + ", on = " +isOn ( ) + ", radius = " + getRadius ( ) + ", color = " + getColor ( ) + ", id = " + getId ( )
-				+ " ]";
+		if ( on ) // testing if the fan is on or off
+		{
+			return "Fan: [ speed = " + getSpeed ( ) + ", on = " +isOn ( ) + ", radius = " + getRadius ( ) + ", color = " + getColor ( ) + ", id = " + getId ( )
+			+ " ]";
+		}
+		else 
+		{
+			return "Fan: [ fan is off " + ", radius = " + getRadius ( ) + ", color = " + getColor ( ) + ", id = " + getId ( )
+			+ " ]";
+		}
 	} // end of toString method
 	
 } // end of class Fan
