@@ -33,8 +33,8 @@ public class AccountsPayable
 			getEmployeeDetails ( payableEmployees );
 		} // end of enhanced for loop
 		
-		/* 2nd traversal
-		 * for loop for Step 17: 10% increase in case of a Base Plus Commission Employee
+		// 2nd traversal
+		// for loop for Step 17: 10% increase in case of a Base Plus Commission Employee
 		for ( Employee employee : payableEmployees )
 		{  
 			employeeNum++;
@@ -48,7 +48,7 @@ public class AccountsPayable
 				  System.out.println ( "10% increase: \n" + ( (BasePlusCommissionEmployee ) bPCE ).toString ( ) + "\n" );
 			} // end of if statement 
 		 } // end of enhanced for loop
-		*/
+		
 		
 		// 3rd traversal
 		for ( Employee travPayableEmployee : payableEmployees )
@@ -87,8 +87,8 @@ public class AccountsPayable
 			System.out.print ( "Enter your weekly salary: " );
 			weeklySalary = input.nextDouble ( );
 			SalariedEmployee sEmployee = new SalariedEmployee ( firstName, lastName, ssNumber, weeklySalary );
-			// printEmployeeDetails ( sEmployee ); // print with toString method
-			printEmployeeDetails2 ( sEmployee ); // print without toString method
+			printEmployeeDetails ( sEmployee ); // print with toString method
+			//printEmployeeDetails2 ( sEmployee ); // print without toString method
 		} // end of if statement
 		else if ( employeeType == 2 )
 		{
@@ -99,8 +99,8 @@ public class AccountsPayable
 			System.out.print ( "Enter your commission rate: " );
 			commissionRate = input.nextDouble ( );
 			CommissionEmployee cEmployee = new CommissionEmployee ( firstName, lastName, ssNumber, grossSales, commissionRate );
-			// printEmployeeDetails ( cEmployee ); // print with toString method
-			printEmployeeDetails2 ( cEmployee ); // print without toString method
+			printEmployeeDetails ( cEmployee ); // print with toString method
+			//printEmployeeDetails2 ( cEmployee ); // print without toString method
 		} // end of else if statement
 		else if ( employeeType == 3 )
 		{
@@ -111,8 +111,8 @@ public class AccountsPayable
 			System.out.print ( "Enter the number of hours you worked: ");
 			hours = input.nextDouble ( );
 			HourlyEmployee hEmployee = new HourlyEmployee ( firstName, lastName, ssNumber, hourlyWage, hours );
-			// printEmployeeDetails ( hEmployee ); // print with toString method
-			printEmployeeDetails2 ( hEmployee ); // print without toString method
+			printEmployeeDetails ( hEmployee ); // print with toString method
+			//printEmployeeDetails2 ( hEmployee ); // print without toString method
 		} // end of else if statement
 		else if ( employeeType == 4 )
 		{
@@ -126,8 +126,8 @@ public class AccountsPayable
 			System.out.print ( "Enter your commission rate: " );
 			commissionRate = input.nextDouble ( );
 			BasePlusCommissionEmployee bPCEmployee = new BasePlusCommissionEmployee ( firstName, lastName, ssNumber, grossSales, commissionRate, basePay );
-			// printEmployeeDetails ( bPCEmployee ); // print with toString method
-			printEmployeeDetails2 ( bPCEmployee ); // print without toString method
+			printEmployeeDetails ( bPCEmployee ); // print with toString method
+			//printEmployeeDetails2 ( bPCEmployee ); // print without toString method
 			employee = bPCEmployee;
 		} // end of else if statement
 		return employee;
@@ -139,22 +139,7 @@ public class AccountsPayable
 	 */
 	public static void printEmployeeDetails ( Employee employee )
 	{
-		if ( employee instanceof SalariedEmployee )
-		{
-			System.out.println ( employee.toString ( ) + "\n" );
-		} // end of if statement
-		else if ( employee instanceof CommissionEmployee )
-		{
-			System.out.println ( employee.toString ( ) + "\n" );
-		} // end of else if statement
-		else if ( employee instanceof HourlyEmployee )
-		{
-			System.out.println ( employee.toString ( ) + "\n" );
-		} // end of else if statement
-		else if ( employee instanceof BasePlusCommissionEmployee )
-		{
-			System.out.println ( employee.toString ( ) + "\n" );
-		} // end of else if statement
+		System.out.println ( employee.toString ( ) + "\n" );
 	} // end of printEmployeeDetails
 
 	/**
