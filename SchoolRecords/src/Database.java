@@ -126,8 +126,10 @@ public class Database
 				listOfPerson.add ( staff );
 			} // end of else if statement
 		} // end of while loop
-		
+		input.close ( );
+		printWriter.close ( );
 		return listOfPerson;
 	} // end of readPerson
 
+	
 } // end of class Database
