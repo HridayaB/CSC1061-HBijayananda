@@ -73,4 +73,16 @@ public class Student extends Person
 				+ "Email Address:" + getEmailAddress ( ) + "\n" + "Status:" + getStatus ( ) + "\n";
 	} // end of customized toString method
 	
+	/**
+	 * Customized toString method for the Database class
+	 * 
+	 * @return A string with the person's information separated by a comma
+	 */
+	@Override
+	public String dbToString ( )
+	{
+		return getClass ( ) + ": " + ", " + getName ( ) + ", " + getAddress ( ) + ", " + getPhoneNumber ( )
+				+ ", " + getEmailAddress ( ) + ", " + getStatus ( ) + "\n";
+	} // end of dbToString
+	
 } // end of class Student

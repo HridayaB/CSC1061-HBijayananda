@@ -48,37 +48,13 @@ public class Database
 	} // end of default constructor method
 		
 	/**
-	 * Writes the name of the class for the object and all the information for the object to the file
+	 * Writes the name of the class for the object and all the information for the object to the file by calling the object's dbToString method
 	 * 
 	 * @param person The type of person that is being passed into writePerson
 	 */
 	public void writePerson ( Person person )
 	{
-		printWriter.print ( person.getClass ( ) + ": " + ", " );
-		printWriter.print ( person.getName ( ) + ", " );
-		printWriter.print ( person.getAddress ( ) + ", " );
-		printWriter.print ( person.getPhoneNumber ( ) + ", " );
-		printWriter.print ( person.getEmailAddress ( ) + ", " );
-		if ( person instanceof Student )
-		{
-			printWriter.print ( ( ( Student ) person ).getStatus ( ) + "\n" );
-		} // end of if statement
-		else if ( person instanceof Faculty )
-		{
-			printWriter.print ( ( ( Faculty ) person ).getOffice ( ) + ", " );
-			printWriter.print ( ( ( Faculty ) person ).getOfficeHours ( ) + ", " );
-			printWriter.print ( ( ( Faculty ) person ).getRank ( ) + ", " );
-			printWriter.print ( ( ( Faculty ) person ).getSalary ( ) + ", " );
-			printWriter.print ( ( ( Faculty ) person ).getDateHired ( ) + "\n" );
-
-		} // end of if statement
-		else if ( person instanceof Staff )
-		{
-			printWriter.print ( ( ( Staff ) person ).getOffice ( ) + ", " );
-			printWriter.print ( ( ( Staff ) person ).getTitle ( ) + ", " );
-			printWriter.print ( ( ( Staff ) person ).getSalary ( ) + ", " );
-			printWriter.print ( ( ( Staff ) person ).getDateHired ( ) + "\n" );
-		} // end of if statement
+		printWriter.print( person.dbToString ( ) );
 		printWriter.flush ( );
 	} // end of writePerson
 	
@@ -127,9 +103,15 @@ public class Database
 			} // end of else if statement
 		} // end of while loop
 		input.close ( );
-		printWriter.close ( );
 		return listOfPerson;
 	} // end of readPerson
 
+	/**
+	 * Used to close printWriter
+	 */
+	public void close ( )
+	{
+		printWriter.close ( );
+	} // end of close
 	
 } // end of class Database

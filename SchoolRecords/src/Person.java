@@ -137,4 +137,15 @@ public class Person
 				+ "Phone Number: " + getPhoneNumber ( ) + "\n" + "Email Address: " + getEmailAddress ( );
 	} // end of customized toString method
 	
+	/**
+	 * Customized toString method for the Database class
+	 * 
+	 * @return A string with the person's information separated by a comma
+	 */
+	public String dbToString ( )
+	{
+		return getClass ( ) + ": " + ", " + getName ( ) + ", " + getAddress ( ) + ", " + getPhoneNumber ( )
+				+ ", " + getEmailAddress ( ) + "\n";
+	} // end of dbToString
+	
 } // end of class Person

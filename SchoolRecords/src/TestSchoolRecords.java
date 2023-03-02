@@ -25,10 +25,7 @@ public class TestSchoolRecords
 	 */
 	public static void main ( String [ ] args ) throws IOException 
 	{
-		// TODO Auto-generated method stub 
-		Person person = new Person ( );
 		Database database = new Database ( );	
-		ArrayList < Person > listOfPerson = new ArrayList < > ( ); 
 		
 		Student student = new Student ( "Carbon Dioxide", "68 Chemistry St.", "(789) 456-1230", "hexaocto@gmail.com", "Freshman" );
 		Student student2 = new Student ( "Pi e", "314 Math St.", "(123) 456-7890", "314@gmail.com", "Senior" );
@@ -46,10 +43,12 @@ public class TestSchoolRecords
 		database.writePerson ( staff );
 		database.writePerson ( staff2 );
 		
-		for ( Person per : database.readPerson ( ) )
+		for ( Person person : database.readPerson ( ) )
 		{
-			System.out.println ( per.toString ( ) );
+			System.out.println ( person.toString ( ) );
 		} // end of for loop
+		
+		database.close ( );
 	} // end of main
 
 } // end of driver class TestSchoolRecords

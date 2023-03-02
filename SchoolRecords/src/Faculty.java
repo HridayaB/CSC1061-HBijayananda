@@ -105,4 +105,17 @@ public class Faculty extends Employee
 				+ "Office Hours:" + getOfficeHours ( ) + "\n" + "Rank:" + getRank ( ) + "\n" + "Salary: $" + getSalary ( ) + "\n" + "Date Hired:" + getDateHired ( ) + "\n";
 	} // end of customized toString method
 	
+	/**
+	 * Customized toString method for the Database class
+	 * 
+	 * @return A string with the person's information separated by a comma
+	 */
+	@Override
+	public String dbToString ( )
+	{
+		return getClass ( ) + ": " + ", " + getName ( ) + ", " + getAddress ( ) + ", " + getPhoneNumber ( )
+				+ ", " + getEmailAddress ( ) + ", " + getOffice ( ) + ", " + getOfficeHours ( ) + ", " + getRank ( ) 
+				+ ", " + getSalary ( ) + ", " + getDateHired ( ) + "\n";
+	} // end of dbToString
+	
 } // end of class Faculty
