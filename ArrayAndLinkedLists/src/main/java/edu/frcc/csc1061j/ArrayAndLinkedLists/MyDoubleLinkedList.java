@@ -354,16 +354,6 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 	
 	public void reverse ( ) 
 	{
-//		Node temp = head;
-//		
-//		for ( int i = 0; i < size; i++ )
-//		{
-//			Node next = temp.next;
-//	        temp.next = temp.prev;
-//	        temp.prev = next;
-//	        head = temp;
-//	        temp = next;
-//		}
 		Node temp = head;
 	    head = tail;
 	    tail = temp;
