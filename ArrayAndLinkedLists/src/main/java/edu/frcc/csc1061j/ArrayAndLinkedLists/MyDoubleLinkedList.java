@@ -4,8 +4,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
-public class MyDoubleLinkedList < E > implements List < E > 
+public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 {
 
 	private class Node
@@ -58,8 +59,37 @@ public class MyDoubleLinkedList < E > implements List < E >
 	@Override
 	public Iterator < E > iterator ( ) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new MyIterator ( );
+	}
+	
+	private class MyIterator implements Iterator < E >
+	{
+
+		private Node current; // The current node
+		
+		public MyIterator ( )
+		{
+			this.current = head;
+		}	
+		
+		@Override
+		public boolean hasNext ( ) 
+		{
+			return current != null;
+		}
+
+		@Override
+		public E next() 
+		{
+			if ( !hasNext ( ) )
+			{
+				throw new NoSuchElementException ( );
+			}
+			E data = current.data;
+			current = current.next;
+			return data;
+		}
+		
 	}
 
 	@Override
@@ -139,8 +169,7 @@ public class MyDoubleLinkedList < E > implements List < E >
 	@Override
 	public boolean addAll ( int index, Collection < ? extends E > c ) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -325,6 +354,27 @@ public class MyDoubleLinkedList < E > implements List < E >
 	
 	public void reverse ( ) 
 	{
-		// use the tail
+//		Node temp = head;
+//		
+//		for ( int i = 0; i < size; i++ )
+//		{
+//			Node next = temp.next;
+//	        temp.next = temp.prev;
+//	        temp.prev = next;
+//	        head = temp;
+//	        temp = next;
+//		}
+		Node temp = head;
+	    head = tail;
+	    tail = temp;
+	    while (temp != null) 
+	    {
+	        Node next = temp.next;
+	        temp.next = temp.prev;
+	        temp.prev = next;
+	        temp = next;
+	    }
 	}
+
+	
 } // end of class MyDoubleLinkedList

@@ -16,8 +16,8 @@ public class Song
 	
 	/**
 	 * Default constructor 
-	 * @paramartistName The artist's name
-	 * @paramsongTitle The song's title
+	 * @param artistName The artist's name
+	 * @param songTitle The song's title
 	 */
 	public Song(String artistName, String songTitle)
 	{
@@ -36,7 +36,7 @@ public class Song
 
 	/**
 	 * Auto-generated setter for artist's name
-	 * @paramartistName The artist's name
+	 * @param artistName The artist's name
 	 */
 	public void setArtistName(String artistName) 
 	{
@@ -54,7 +54,7 @@ public class Song
 
 	/**
 	 * Auto-generated setter for song's title
-	 * @paramsongTitle
+	 * @param songTitle The song's title
 	 */
 	public void setSongTitle(String songTitle) 
 	{
@@ -63,13 +63,13 @@ public class Song
 	// end of getters and setters
 
 	/**
-	 * Auto-generated to-String method
+	 * Customized to-String method
 	 * @return The the artist's name and the song title
 	 */
 	@Override
 	public String toString() 
 	{
-		return "Song: \n" + "Artist name: " + getArtistName() + ", Song title: " + getSongTitle() + "\n" + getArtistName() + " - " + getSongTitle();
+		return getArtistName() + " - " + getSongTitle();
 	} // end of to-String method
 	
 } // end of class Song
