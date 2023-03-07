@@ -116,13 +116,12 @@ public class Menu
 				
 					boolean removed = false;
 					
-					for (Iterator<Song> ite = songList.iterator();ite.hasNext();)
+					for (Song song : songList)
 					{
-						Song songSearch = ite.next();
-						if (songSearch.getArtistName().equals(artistName) && songSearch.getSongTitle().equals(songTitle))
+						if (song.getArtistName().equals(artistName) && song.getSongTitle().equals(songTitle))
 						{
-							songList.remove(songSearch);
-							System.out.println("Removed song: " + "\u001B[31m" + songSearch + "\u001B[0m"); // Prints songSearch in red
+							songList.remove(song);
+							System.out.println("Removed song: " + "\u001B[31m" + song + "\u001B[0m"); // Prints songSearch in red
 							removed = true;
 							break;
 						} // end of if statement
