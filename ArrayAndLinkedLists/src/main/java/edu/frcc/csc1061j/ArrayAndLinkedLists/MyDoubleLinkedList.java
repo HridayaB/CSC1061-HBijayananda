@@ -62,35 +62,35 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 		return new MyIterator ( );
 	}
 	
-	private class MyIterator implements Iterator < E >
-	{
-
-		private Node current; // The current node
-		
-		public MyIterator ( )
+		private class MyIterator implements Iterator < E >
 		{
-			this.current = head;
-		}	
-		
-		@Override
-		public boolean hasNext ( ) 
-		{
-			return current != null;
-		}
-
-		@Override
-		public E next() 
-		{
-			if ( !hasNext ( ) )
+	
+			private Node current; // The current node
+			
+			public MyIterator ( )
 			{
-				throw new NoSuchElementException ( );
+				this.current = head;
+			}	
+			
+			@Override
+			public boolean hasNext ( ) 
+			{
+				return current != null;
 			}
-			E data = current.data;
-			current = current.next;
-			return data;
+	
+			@Override
+			public E next() 
+			{
+				if ( !hasNext ( ) )
+				{
+					throw new NoSuchElementException ( );
+				}
+				E data = current.data;
+				current = current.next;
+				return data;
+			}
+			
 		}
-		
-	}
 
 	@Override
 	public Object [ ] toArray ( ) 
