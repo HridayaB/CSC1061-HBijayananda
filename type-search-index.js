@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"edu.frcc.csc1061j.PlaylistManager","l":"Menu"},{"p":"edu.frcc.csc1061j.PlaylistManager","l":"Song"}];updateSearchResults();
