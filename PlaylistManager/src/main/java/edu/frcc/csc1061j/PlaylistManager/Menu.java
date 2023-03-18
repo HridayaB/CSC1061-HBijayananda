@@ -55,7 +55,7 @@ public class Menu
 	 */
 	public static void menuCommands() throws FileNotFoundException
 	{
-		MyDoubleLinkedList <Song> songList = new MyDoubleLinkedList<>(); // A list of songs
+		MyDoubleLinkedList<Song> songList = new MyDoubleLinkedList<>(); // A list of songs
 		File myFile = new File("PlaylistManager.csv"); // The file with the saved playlist
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(myFile.getName(), false));
 		
@@ -66,10 +66,9 @@ public class Menu
 			System.out.print("Enter command: ");
 			String userInput = input.nextLine();
 			
-			switch (userInput)
+			switch (userInput.toLowerCase())
 			{
 				case "add": // Prompts the user and adds a song to the list, if a song is repeated, then user is prompted on whether they want to add it to the list
-				case "Add":
 					System.out.print("Enter artist name: ");
 				    String artistName = input.nextLine();
 				    System.out.print("Enter song title: ");
@@ -108,7 +107,6 @@ public class Menu
 					break;
 				
 				case "remove": // Prompts the user for artist name and song title to remove said song from list
-				case "Remove":
 					System.out.print("Enter artist name: ");
 					artistName = input.nextLine();
 					System.out.print("Enter song title: ");
@@ -116,43 +114,40 @@ public class Menu
 				
 					boolean removed = false;
 					
-					for (Song song : songList)
-					{
-						if (song.getArtistName().equals(artistName) && song.getSongTitle().equals(songTitle))
-						{
-							songList.remove(song);
-							System.out.println("Removed song: " + "\u001B[31m" + song + "\u001B[0m"); // Prints songSearch in red
-							removed = true;
-							break;
-						} // end of if statement
-					} // end of for loop
-					
-					if (!removed)
-					{
-						System.err.println("Song: " + artistName + " - " + songTitle + " not found");
-					} // end of if statement
-					System.out.println();
-					break;
+					for (int i = 0; i < songList.size(); i++)
+				    {
+				        Song song = songList.get(i);
+				        if (song.getArtistName().equals(artistName) && song.getSongTitle().equals(songTitle))
+				        {
+				            songList.remove(i);
+				            System.out.println("Removed song: " + "\u001B[31m" + song + "\u001B[0m"); // Prints song in red
+				            removed = true;
+				            break;
+				        } // end of if statement
+				    } // end of for loop
+				    
+				    if (!removed)
+				    {
+				        System.out.println("\u001B[31m" + "Song: " + artistName + " - " + songTitle + " not found in playlist" + "\u001B[0m"); // prints in red
+				    } // end of if statement
+				    System.out.println();
+				    break;
 				
 				case "count": // Prints out the number of songs in the playlist
-				case "Count":
-					System.out.println(songList.size() + "\n" );
+					System.out.println(songList.size() + "\n");
 					break;
 				
 				case "shuffle": // Shuffles the songs in the playlist
-				case "Shuffle":
 					shuffle(songList);
 					System.out.println();
 					break;
 				
 				case "reverse": // Reverses the order of the songs in the playlist
-				case "Reverse":
 					songList.reverse();
 					System.out.println();
 					break;
 					
 				case "play": // Plays/prints out the songs in the playlist
-				case "Play":
 					for (Song song : songList)
 					{
 						System.out.println("\u001B[32m" + song + "\u001B[0m"); // prints the playlist out in green
@@ -161,7 +156,6 @@ public class Menu
 					break;
 				
 				case "save": // Saves the current state of the playlist to a csv file and prints the contents to the file
-				case "Save":
 					try
 					{
 						if (!myFile.exists())
@@ -183,38 +177,35 @@ public class Menu
 					        printWriter.println(song.getArtistName() + "," + song.getSongTitle());
 					} // end of for loop 
 					printWriter.close();
-					System.out.println("\u001B[32mSave successful! \u001B[0m");
+					System.out.println("\u001B[32mSave successful! \u001B[0m"); // print in green
 					System.out.println();
 					break;
 					
 				case "load": // Loads the information from a csv file
-				case "Load":
 					try 
 					{
 						BufferedReader reader = new BufferedReader(new FileReader(myFile));
-				        String line = reader.readLine(); // reading the first line (header line
-						while ((line = reader.readLine()) != null) 
+				        String line;
+				        while ((line = reader.readLine()) != null) 
 				        {
 							String[] trav = line.split(",");
-				            artistName = trav[0];
-				            songTitle = trav[1];
+				            String loadArtistName = trav[0];
+				            String loadSongTitle = trav[1];
+				            Song song = new Song(loadArtistName, loadSongTitle);
+				            songList.add(song);
 				        } // end of while loop
 				        reader.close();
+				        System.out.println("\u001B[32m" + "Playlist loaded from file " + myFile + " successfully." + "\u001B[0m"); // prints in green
 					} // end of try statement
 					catch (IOException e) 
 					{
-						e.getMessage();
+						System.err.println("Error reading from file: " + myFile + e.getMessage());
 						System.exit(-1);
 					} // end of catch statement
-					for (Song song : songList)
-					{
-						System.out.println("\u001B[32m" + song + "\u001B[0m"); // prints the playlist out in green
-					} // end of for loop
 					System.out.println();
 					break;
 				
 				case "quit": // Quits the menu
-				case "Quit":
 					quit = true;
 					break;
 				
