@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -80,7 +79,7 @@ public class Menu
 				    {
 				        if (song.getArtistName().equals(artistName) && song.getSongTitle().equals(songTitle)) 
 				        {
-				            System.out.println("Song: " + "\u001B[31m" + song + "\u001B[0m" + " is already in this playlist. Want to add it again?"); // prints song in red
+				            System.out.println("Song: " + "\u001B[31m" + song + "\u001B[0m" + " is already in this playlist. Want to add it again? (Enter 'y' for yes and 'n' for no)"); // prints song in red
 				            userInput = input.nextLine();
 				            if (userInput.equalsIgnoreCase("y")) 
 				            {
@@ -199,7 +198,7 @@ public class Menu
 					} // end of try statement
 					catch (IOException e) 
 					{
-						System.err.println("Error reading from file: " + myFile + e.getMessage());
+						System.err.println("Error reading from file: " + e.getMessage());
 						System.exit(-1);
 					} // end of catch statement
 					System.out.println();

@@ -14,6 +14,7 @@ public class MyHashMap<K, V> implements Map<K, V>
 	private double loadFactorThreshold = 0.5; // The load factor threshold, number of entries / number of buckets must not pass load factor threshold 
 	private LinkedList<Entry<K, V>>[] buckets; // An array of linked lists
 	
+	@SuppressWarnings("unchecked")
 	public MyHashMap()
 	{
 		buckets = new LinkedList[INITIAL_NUM_BUCKETS];
@@ -116,13 +117,13 @@ public class MyHashMap<K, V> implements Map<K, V>
 			}
 		}
 		// Traverse through the linked list, check if the entry's key matches key, then return entry's value
-		for (Entry<K, V> entry : bucket)
-		{
-			if (entry.getKey().equals(key))
-			{
-				return entry.getValue();
-			}
-		}
+//		for (Entry<K, V> entry : bucket)
+//		{
+//			if (entry.getKey().equals(key))
+//			{
+//				return entry.getValue();
+//			}
+//		}
 		return null;
 	}
 
@@ -149,7 +150,12 @@ public class MyHashMap<K, V> implements Map<K, V>
 		}
 		bucket.add(new Entry<K, V>(key, value));
 		size++;
-		// Check if load factor has exceeded the threshold then rehash
+		// Check if load factor has exceeded the threshold then rehash		
+		double currentLoadFactor = (1.0 * size)/buckets.length;
+		if (currentLoadFactor > loadFactorThreshold)
+		{
+			rehash();
+		}
 		return value;
 	}
 
@@ -179,8 +185,11 @@ public class MyHashMap<K, V> implements Map<K, V>
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) 
 	{
-		// TODO Auto-generated method stub
-		
+		Set<? extends Map.Entry<? extends K, ? extends V>> entries = m.entrySet ( );
+		for (Map.Entry<? extends K,? extends V> entry : entries)
+		{
+			put(entry.getKey(),entry.getValue());
+		}
 	}
 
 	@Override
@@ -242,9 +251,31 @@ public class MyHashMap<K, V> implements Map<K, V>
 		return set;
 	}
 
+	@SuppressWarnings("unchecked")
 	private void rehash()
 	{
-		
-	}
+		int newCapacity = buckets.length * 2; // New capacity for new list
+	    LinkedList<Entry<K, V>>[] newBuckets = new LinkedList[newCapacity]; // Making new buckets with new capacity
+	    for (LinkedList<Entry<K, V>> bucket : buckets) 
+	    {
+	        if (bucket == null) 
+	        {
+	            continue;
+	        }
+	        for (Entry<K, V> entry : bucket) 
+	        {
+	            // Similar to put(K, V)
+	        	int newBucketIndex = Math.abs(entry.getKey().hashCode()) % newCapacity;
+	            LinkedList<Entry<K, V>> newBucket = newBuckets[newBucketIndex];
+	            if (newBucket == null) 
+	            {
+	                newBucket = new LinkedList<>();
+	                newBuckets[newBucketIndex] = newBucket;
+	            }
+	            newBucket.add(entry);
+	        }
+	    }
+	    buckets = newBuckets;
+	} // end of rehash
 	
 } // end of class MyHashMap
