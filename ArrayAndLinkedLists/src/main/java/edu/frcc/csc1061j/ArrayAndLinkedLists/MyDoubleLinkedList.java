@@ -145,15 +145,9 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 		}
 		
 		Node node = head;
+		if ( o.equals( node.data ) == false )
+		{}
 		
-		for ( int i = 0; i < size; i++)
-		{
-			if ( o.equals(node.data) )
-			{
-				break;
-			}
-			node = node.next;
-		}
 		remove ( index );
 		return true;
 	}
