@@ -63,6 +63,24 @@ public class Song
 	// end of getters and setters
 
 	/**
+	 * Customized equals method that checks if artistName and songTitle matches the one we get from parameter
+	 * @param otherSong The song entered by user
+	 */
+	@Override
+	public boolean equals(Object otherSong)
+	{
+		if (otherSong instanceof Song)
+		{
+			Song song = (Song)otherSong;
+			if (artistName.equals(song.getArtistName()) && songTitle.equals(song.getSongTitle()))
+			{
+				return true;
+			} // end of if statement
+		} // end of if statement
+		return false;
+	} // end of equals method
+	
+	/**
 	 * Customized to-String method
 	 * @return The the artist's name and the song title
 	 */

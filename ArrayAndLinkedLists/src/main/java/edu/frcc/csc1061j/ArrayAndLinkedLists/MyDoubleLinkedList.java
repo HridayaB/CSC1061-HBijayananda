@@ -105,6 +105,7 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 		return array;
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	public < E > E [ ] toArray ( E [ ] a ) 
 	{
@@ -141,6 +142,17 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 		if ( index == -1 )
 		{
 			return false;
+		}
+		
+		Node node = head;
+		
+		for ( int i = 0; i < size; i++)
+		{
+			if ( o.equals(node.data) )
+			{
+				break;
+			}
+			node = node.next;
 		}
 		remove ( index );
 		return true;
@@ -252,7 +264,8 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 	public E remove ( int index ) 
 	{
 		// Removing the node at the index provided
-		E data = get( index );
+		E data = get( index ); 
+	
 		// Checking if index is 0, if yes, then the head points to the next node
 		if ( index == 0 )
 		{
@@ -366,5 +379,4 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 	    }
 	}
 
-	
 } // end of class MyDoubleLinkedList

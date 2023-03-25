@@ -110,22 +110,13 @@ public class Menu
 					artistName = input.nextLine();
 					System.out.print("Enter song title: ");
 					songTitle = input.nextLine();
-				
-					boolean removed = false;
 					
-					for (int i = 0; i < songList.size(); i++)
-				    {
-				        Song song = songList.get(i);
-				        if (song.getArtistName().equals(artistName) && song.getSongTitle().equals(songTitle))
-				        {
-				            songList.remove(i);
-				            System.out.println("Removed song: " + "\u001B[31m" + song + "\u001B[0m"); // Prints song in red
-				            removed = true;
-				            break;
-				        } // end of if statement
-				    } // end of for loop
-				    
-				    if (!removed)
+			       	Song remSong = new Song(artistName, songTitle);
+			        if (songList.remove(remSong) == true)
+			        {
+			            System.out.println("Removed song: " + "\u001B[31m" + remSong + "\u001B[0m"); // Prints song in red
+			        } // end of if statement
+			        else if (songList.remove(remSong) == false)
 				    {
 				        System.out.println("\u001B[31m" + "Song: " + artistName + " - " + songTitle + " not found in playlist" + "\u001B[0m"); // prints in red
 				    } // end of if statement

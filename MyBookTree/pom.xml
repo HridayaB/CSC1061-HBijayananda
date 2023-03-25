@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>edu.frcc.csc1061j</groupId>
-  <artifactId>ArrayAndLinkedLists</artifactId>
+  <artifactId>MyBookTree</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>ArrayAndLinkedLists</name>
-  <description>A simple ArrayAndLinkedLists.</description>
+  <name>MyBookTree</name>
+  <description>A simple MyBookTree.</description>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
