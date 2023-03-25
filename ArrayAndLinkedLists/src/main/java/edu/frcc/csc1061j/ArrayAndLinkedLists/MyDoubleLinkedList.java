@@ -138,16 +138,13 @@ public class MyDoubleLinkedList < E > implements List < E >, Iterable < E >
 	public boolean remove ( Object o ) 
 	{
 		// Getting the index for the object, remove at index is called if index is not -1
+		// Also indexOf is checking if song equals to the song we want to remove
 		int index = indexOf ( o );
 		if ( index == -1 )
 		{
 			return false;
 		}
-		
-		Node node = head;
-		if ( o.equals( node.data ) == false )
-		{}
-		
+
 		remove ( index );
 		return true;
 	}
