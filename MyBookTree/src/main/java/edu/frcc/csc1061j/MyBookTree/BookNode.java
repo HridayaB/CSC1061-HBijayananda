@@ -3,7 +3,7 @@ package edu.frcc.csc1061j.MyBookTree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookNode 
+public class BookNode implements Comparable <BookNode>
 {
 
 	private String title; // The root node
@@ -72,6 +72,38 @@ public class BookNode
 	}
 	
 	@Override
+	public int compareTo(BookNode o) 
+	{
+		if (chapterNum > o.chapterNum)
+		{
+			return 1;
+		}
+		else if (chapterNum < o.chapterNum)
+		{
+			return -1;
+		}
+		
+		if (sectionNum > o.sectionNum)
+		{
+			return 1;
+		}
+		else if (sectionNum < o.sectionNum)
+		{
+			return -1;
+		}
+		
+		if (subSectionNum > o.subSectionNum)
+		{
+			return 1;
+		}
+		else if (subSectionNum < o.subSectionNum)
+		{
+			return -1;
+		}
+		return 0;
+	}
+	
+	@Override
 	public String toString()
 	{
 		// if chapNum is 0 then return just the title
@@ -82,15 +114,15 @@ public class BookNode
 		// if secNum is 0 then return the chapterNum and the title
 		if (sectionNum == 0)
 		{
-			return ("\t" + chapterNum + " " + title);
+			return ("\t" + " " + title);//chapterNum + " " + title);
 		}
 		// if subSecNum is 0 then return the sectionNun, the chapterNum, and the title
 		if (subSectionNum == 0)
 		{
-			return ("\t\t" + sectionNum + " " + chapterNum + " " + title);
+			return ("\t\t" + " " + title); //sectionNum + " " + chapterNum + " " + title);
 		}
 		// if none of the above then return the subSectionNum, the sectionNum, the chapterNum, and the title
-		return ("\t\t\t" + subSectionNum + " " + sectionNum + " " + chapterNum + " " + title);
+		return ("\t\t\t" + " " + title);//subSectionNum + " " + sectionNum + " " + chapterNum + " " + title);
 	}
 	
 }

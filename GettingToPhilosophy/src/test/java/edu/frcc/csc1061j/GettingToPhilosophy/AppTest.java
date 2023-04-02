@@ -1,4 +1,4 @@
-package edu.frcc.csc1061j.MyBookTree;
+package edu.frcc.csc1061j.GettingToPhilosophy;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

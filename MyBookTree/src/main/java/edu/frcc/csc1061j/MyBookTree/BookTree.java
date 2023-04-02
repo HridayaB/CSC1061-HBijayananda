@@ -34,7 +34,8 @@ public class BookTree implements Iterable <BookNode>
 		// if secNum is 0 then this is a chapter and we add the chapter to the root
 		if (secNum == 0)
 		{
-			root.getChildNodes().add(node); 
+			root.getChildNodes().add(node);
+			Collections.sort(root.getChildNodes());
 			return true;
 		}
 		// if subSecNum is 0 then this is a section and we find the section through all the chapters and we add the section to the root
@@ -45,6 +46,7 @@ public class BookTree implements Iterable <BookNode>
 				if (chapNum == aNode.getChapterNum())
 				{
 					aNode.getChildNodes().add(node);
+					Collections.sort(aNode.getChildNodes());
 					return true;
 				}
 			}
@@ -63,11 +65,12 @@ public class BookTree implements Iterable <BookNode>
 					if (secNum == sNode.getSectionNum())
 					{
 						sNode.getChildNodes().add(node);
+						Collections.sort(sNode.getChildNodes());
 						return true;
 					}
 				}
+				return false;
 			}
-			return false;
 		}
 		return false;
 	}
@@ -108,6 +111,5 @@ public class BookTree implements Iterable <BookNode>
 			return node;
 		}
 	}
-	
 	
 }
