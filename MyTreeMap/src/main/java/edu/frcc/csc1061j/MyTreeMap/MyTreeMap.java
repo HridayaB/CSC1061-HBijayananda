@@ -139,23 +139,95 @@ public class MyTreeMap<K, V> implements Map<K, V>, Iterable<V>
 		return value;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public V remove(Object key) 
 	{
-		Node current = (MyTreeMap<K, V>.Node) get(key); // get the current value from the get method
-		Node parent = null;
-		
-		// do case 2 first
-		
-		// Case 1
-		
-		
-		// Case 2
-		
-		
-		// Case 3
-		
-		return null;
+		Node current = root;
+	    Node parent = null;
+	    Comparable<K> k = (Comparable<K>) key;
+	    
+	    if (current == null)
+		{
+			throw new NullPointerException();
+		}
+
+	    while (current != null) 
+	    {
+	        int cmp = k.compareTo(current.key);
+	        if (cmp == 0) 
+	        {
+	            if (current.left != null && current.right != null) // Case 2: two children
+	            {
+	                Node child = current.right;
+	                parent = current;
+	                while (child.left != null) 
+	                {
+	                    parent = child;
+	                    child = child.left;
+	                }
+	                
+	                current.key = child.key;
+	                current.value = child.value;
+	                current = child;
+	                parent.left = child.right;
+	            } 
+	            else if (current.left == null && current.right == null) // Case 1: no children
+	            {
+	                if (parent == null) 
+	                {
+	                    root = null;
+	                } 
+	                else if (current == parent.left) 
+	                {
+	                    parent.left = null;
+	                } 
+	                else 
+	                {
+	                    parent.right = null;
+	                }
+	            } 
+	            else // Case 3: one child
+	            {
+	                Node child = current.left;
+	            	if (current.left != null)
+	                {
+	                	child = current.left;
+	                }
+	                else if (current.right != null)
+	                {
+	                	child = current.right;
+	                }
+	            	
+	                if (parent == null) 
+	                {
+	                    root = child;
+	                } 
+	                else if (current == parent.left) 
+	                {
+	                    parent.left = child;
+	                } 
+	                else 
+	                {
+	                    parent.right = child;
+	                }
+	            }
+	            return current.value;
+	        } 
+	        else if (cmp < 0) // go left 
+	        {
+	            parent = current;
+	            current = current.left;
+	        } 
+	        else // go right
+	        {
+	            parent = current;
+	            current = current.right;
+	        }
+	    }
+	   
+	    // key not found
+	    return null;
 	}
 
 	@Override
@@ -196,6 +268,7 @@ public class MyTreeMap<K, V> implements Map<K, V>, Iterable<V>
 	@Override
 	public Iterator<V> iterator() 
 	{
+		// An iterator to traverse the tree map with a in-order traversal
 		return new InOrderIterator();
 	}
 	

@@ -49,6 +49,7 @@ public class WikiPhilosophy {
         Connection conn = Jsoup.connect(source);
     	String link = null;
     	boolean linkFound = false;
+    	int paren = 0;
         try 
         {
             doc = conn.get();
@@ -69,38 +70,24 @@ public class WikiPhilosophy {
             for (Node node : iter) {
                 
                 // TODO: FILL THIS IN!
-            	
-            	int paren = 0;
-            	
+            	            	
             	// If this node is a text node make sure you are not within parentheses
             	if (node instanceof TextNode)
             	{
+            		//boolean parenBalanced = true;
             		String text = node.toString();
-            		int i = 0, j = 0; 
-            		 
-            		while (i != -1)
-            		{
-            			i = text.indexOf("(", j);
-            			if (i != -1)
-            			{
-                			paren++;
-            			}
-            			j = i + 1;
-            		}
-            		
-            		i = 0; 
-            		j = 0;
-            		
-            		while (i != -1)
-            		{
-            			i = text.indexOf(")", j);
-            			if (i != -1)
-            			{
-                			paren--;
-            			}
-            			j = i + 1;
-            		}
-            		
+                    for (int i = 0; i < text.length(); i++) 
+                    {
+                        char p = text.charAt(i);
+                        if (p == '(') 
+                        {
+                            paren++;
+                        } 
+                        else if (p == ')') 
+                        {
+                        	paren--;
+                        }
+                    }	
             	}
             	
             	// If this node has a link you can get it by accessing the href attribute in the node

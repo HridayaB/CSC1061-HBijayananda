@@ -26,10 +26,13 @@ public class TreeMapTest
 		
 		printInOrder(map);
 		
-//		int removedKey = map.remove(5);
-//		System.out.println("Removed key: " + removedKey);
-//		
-//		printInOrder(map);
+		int removedKey = map.remove(5);
+		System.out.println("Removed key: " + removedKey);
+		
+		removedKey = map.remove(7);
+		System.out.println("Removed key: " + removedKey);
+		
+		printInOrder(map);
 	}
 	
 	private static void printInOrder(MyTreeMap<Integer, Integer> map)
