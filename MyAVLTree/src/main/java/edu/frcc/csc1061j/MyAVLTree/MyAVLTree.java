@@ -138,7 +138,7 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061j.My
 		{
 			leftHeight = current.left.height;
 		}
-		else if (current.right != null)
+		if (current.right != null)
 		{
 			rightHeight = current.right.height;
 		}
@@ -241,7 +241,7 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061j.My
 		
 		// The current node's right child is the right node's right child and the right node's left child is the node, then update their heights
 		node.right = rightNode.left;
-		rightNode.right = node;
+		rightNode.left = node;
 		updateHeight(node);
 		updateHeight(rightNode);
 	}
@@ -270,12 +270,12 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061j.My
 			}
 		}
 		
-		// Handling the rightNode's children
+		// Handling the leftNode's children
 		node.right = leftNode.left;
 		rightNode.left = leftNode.right;
 		
 		// leftNode is now in the place of the starting node, so it's right child is the rightNode and it's left child is the starting node
-		leftNode.right = rightNode;
+		root.right = rightNode;
 		leftNode.left = node;
 		
 		// Update all their heights
@@ -393,10 +393,12 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061j.My
 		if (k.compareTo(parent.key) < 0)
 		{
 			parent.left = newNode;
+			//path.add(parent.left);
 		}
 		else
 		{
 			parent.right = newNode;
+			//path.add(parent.right);
 		}
 		size++;
 		updateHeight(newNode);
