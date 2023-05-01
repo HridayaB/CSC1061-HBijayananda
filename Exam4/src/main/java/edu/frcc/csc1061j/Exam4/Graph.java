@@ -4,13 +4,16 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
 
 public class Graph<E> {
 	public List<Vertex> vertices = new ArrayList<>();
 	
-	private class Vertex {
+	public class Vertex {
 		private E elem;
 		private List<Edge> neighbors = new ArrayList<>();
 		
@@ -138,7 +141,26 @@ public class Graph<E> {
 		// for all directed edges from v to w that are in G.adjacentEdges(v) do
 			// if vertex w is not labeled as discovered then
 				// recursively call dfs(G, w)
+		List<Vertex> discovered = new ArrayList<>();
+		Stack<Vertex> stack = new Stack<>();
+		stack.push(root);
 		
+		while (!stack.isEmpty())
+		{
+			Vertex v = stack.pop();
+			
+			if (!discovered.contains(v)) 
+			{
+	            discovered.add(v);
+	            for (Vertex w : getChildNodes(v)) 
+	            {
+	                stack.push(w);
+					System.out.print(w);
+	            }
+	        }
+		}
+		 
+		 
 		// or
 		
 		// let S be a stack
@@ -150,13 +172,13 @@ public class Graph<E> {
 				// for all edges from v to w in G.adjacentedges(v) do
 					//S.pop(w) 
 		
-		return null;
+		return discovered;
 	}
 
 	/* TODO: Implement the BFS algorithm for a graph. It should return a list 
 	** of all the vertices in the breadth-first traversal.
 	*/
-	public List<E> bfs() {
+	public List<E> bfs(Vertex root) {
 		// Let Q be a queue
 		// label root as explored
 		// Q.enqueue(root)
@@ -168,7 +190,28 @@ public class Graph<E> {
 				// if w is not labeled as explored then
 					// label w as explored
 					// Q.enqueue(w)
-		return null;
+		
+		LinkedList<E> explored = new LinkedList<>();
+		Queue<Vertex> queue = new LinkedList<>();
+		explored.add(root.getKey());
+		
+		queue.offer(root);
+		
+		while (!queue.isEmpty())
+		{
+			Vertex v = queue.poll();
+			
+			for (Vertex w : getChildNodes(v))
+			{
+				if (!explored.contains(w.getKey()))
+				{
+					explored.add(w.getKey());
+					queue.offer(w);
+					System.out.print(w);
+				}
+			}
+		}
+		return explored;
 	}
 	
 

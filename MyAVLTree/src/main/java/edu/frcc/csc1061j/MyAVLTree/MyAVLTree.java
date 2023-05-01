@@ -393,12 +393,10 @@ public class MyAVLTree<K, V> implements Map<K, V>, Iterable<edu.frcc.csc1061j.My
 		if (k.compareTo(parent.key) < 0)
 		{
 			parent.left = newNode;
-			//path.add(parent.left);
 		}
 		else
 		{
 			parent.right = newNode;
-			//path.add(parent.right);
 		}
 		size++;
 		updateHeight(newNode);
