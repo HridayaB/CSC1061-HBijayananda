@@ -29,27 +29,30 @@ public class GraphTest {
 		System.out.println("Original Graph:");
 		graph.printEdges();
 		
-		 Graph<Integer> graph1 = new Graph<>(Arrays.asList(0, 1, 2, 3, 4, 5), 
+		Graph<Integer> graph1 = new Graph<>(Arrays.asList(0, 1, 2, 3, 4, 5), 
 		    		new Integer[][]{{0, 1, 1}, {0, 2, 1}, {1, 3, 1}, {1, 4, 1}, {2, 4, 1}, {3, 5, 1}, {4, 5, 1}});
 		    
-		    System.out.println("BFS test:");
-		    List<Integer> bfsList = graph.bfs(graph.vertices.get(0));
-		    for (Integer i : bfsList) 
-		    {
-		        System.out.print(i + " ");
-		    }
-		    System.out.println();
-		    
-		    System.out.println("DFS test:");
-		    List<Graph<Integer>.Vertex> dfsList = graph.dfs(graph.vertices.get(0));
-		    for (Graph<Integer>.Vertex v : dfsList) {
-		        System.out.print(v + " ");
-		    }
-		    System.out.println();
+	    System.out.println("BFS test:");
+	    List<Integer> bfsList = graph.bfs(graph.vertices.get(0));
+	    for (Integer i : bfsList) 
+	    {
+	        System.out.print(i + " ");
+	    }
+	    System.out.println();
+	    
+	    System.out.println("DFS test:");
+	    List<Graph<Integer>.Vertex> dfsList = graph.dfs(graph.vertices.get(0));
+	    for (Graph<Integer>.Vertex v : dfsList) {
+	        System.out.print(v + " ");
+	    }
+	    System.out.println();
+
 		
 		
-		System.out.println("Minimum Spanning Tree:");
-		//graph.findMinimumSpanningTree().printEdges();		
+	    Graph<Integer> mst = graph.findMinimumSpanningTree();
+	    System.out.println("Minimum Spanning Tree:");
+	    mst.printEdges();
+		
 	}
 
 

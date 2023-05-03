@@ -4,9 +4,13 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 
 
@@ -155,7 +159,6 @@ public class Graph<E> {
 	            for (Vertex w : getChildNodes(v)) 
 	            {
 	                stack.push(w);
-					System.out.print(w);
 	            }
 	        }
 		}
@@ -207,7 +210,6 @@ public class Graph<E> {
 				{
 					explored.add(w.getKey());
 					queue.offer(w);
-					System.out.print(w);
 				}
 			}
 		}
@@ -218,8 +220,36 @@ public class Graph<E> {
 	/* TODO: Create a spanning tree using Kruskal's Algorithm and return it. 
 	** The spanning tree will be a new graph
 	*/
-	public Graph<E> findMinimumSpanningTree() {
-		
-		return null;
+	public Graph<E> findMinimumSpanningTree() {		
+	    List<Edge> edges = new ArrayList<>();
+	    for (Vertex vertex : vertices) 
+	    {
+	        edges.addAll(vertex.neighbors);
+	    }
+	    Collections.sort(edges);
+
+	    List<Vertex> mstVertices = new ArrayList<>();
+	    for (Vertex vertex : vertices) 
+	    {
+	        mstVertices.add(new Vertex(vertex.getKey()));
+	    }
+	    
+	    Graph<E> mstGraph = new Graph<E>(mstVertices);
+
+	    for (Edge edge : edges) 
+	    {
+	        Graph<E>.Vertex source = mstGraph.findVertex(edge.s.getKey());
+	        Graph<E>.Vertex destination = mstGraph.findVertex(edge.d.getKey());
+	        List<Graph<E>.Vertex> sPath = mstGraph.dfs(source);
+	        if (sPath.contains(destination)) 
+	        {
+	            continue;
+	        }
+
+	        Graph<E>.Edge mstEdge = new Edge(source, destination, edge.weight);
+	        mstGraph.addEdge(mstEdge);
+	    }
+
+	    return mstGraph;
 	}
 }
