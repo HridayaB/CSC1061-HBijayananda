@@ -46,12 +46,9 @@ public class GraphTest {
 	        System.out.print(v + " ");
 	    }
 	    System.out.println();
-
 		
-		
-	    Graph<Integer> mst = graph.findMinimumSpanningTree();
 	    System.out.println("Minimum Spanning Tree:");
-	    mst.printEdges();
+		graph.findMinimumSpanningTree().printEdges();
 		
 	}
 
